@@ -1,0 +1,169 @@
+header{
+    background: var(--myBlackStrong);
+}
+header .wrap{
+    height: 12vh;
+}
+header .logo svg{
+    width: 3rem;
+    height:3rem;
+    color: var(--myPurple);
+}
+header .col a.button.menu{
+    display: none;
+}
+aside.panel, aside.panelEditor{
+    min-height:calc(100vh - 12vh);
+    height: 100%;
+    background: var(--myBlackWeak);
+    padding: 0.7rem 0;
+}
+aside.panel ul li.active{
+    background: var(--myBlackWeakIn);
+}
+aside.panel ul li{
+    padding: 1.2rem 0.8rem;
+    text-align: center;
+}
+aside.panel ul li svg{
+    width: 1.5rem;
+    height: 1.5rem;
+}
+aside.panelEditor{
+    position: absolute;
+    right:0;
+    top:0;
+}
+aside.panelEditor .col{
+    padding: 1.5rem 1.2rem;
+    border-bottom: 1px solid var(--myBlackWeakIn);
+}
+aside.panelEditor .col:last-child{
+    border-bottom:0;
+}
+aside.panelEditor input:not(input[type=range]){
+    border: 3px solid var(--myBlackWeakIn);
+    height: 45px;
+}
+aside.panelEditor .col .sendFile{
+    background: var(--myBlackWeak);
+    border: 2px dashed var(--myBlackWeakIn);
+    padding:3rem;
+}
+aside.panelEditor button, aside.panelEditor a.button{
+    background-color: var(--myBlackStrong);
+}
+aside.panelEditor .saveContent {
+    border-top: 1px solid var(--myBlackWeakIn);
+}
+aside.panelEditor .saveContent button{
+    position: absolute;
+    bottom: 5%;
+}
+.content {
+	display: none;
+}
+.content--active {
+	display: block;
+}
+/*dash*/
+section.container{
+    padding:1rem;
+    max-width: 70%;
+    margin: unset;
+    max-width: unset;
+}
+section.container .wrap{
+    background-color: var(--myBlackStrong);
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+section.container .wrap .builder{
+    min-height: 80vh;
+    max-width: 100%;
+    max-height: 80vh;
+    overflow: hidden;
+}
+section.container #canvas{
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 10;
+}
+section.container .wrap figure{
+    resize: both;
+    overflow:auto;
+    position: relative;
+    pointer-events: painted;
+    z-index: 0;
+}
+section.container .wrap figure img{
+    pointer-events: none;
+    transition: ease-in 0.5s;
+}
+section.container .cuadro{
+    z-index: 999 !important;
+}
+section.container .cuadro input{
+    border:0px;
+    color: #fff;
+    resize: both;
+}
+.todo *{
+    display:none;
+}
+.cuadro{
+    position: absolute;
+    top:0;
+    left:0;
+}
+/*LOGIN*/
+section.containerAccess {
+    height:100vh;
+    width: 100%;
+    background-color: #000;
+    background-image: url('../uploads/bg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80%;
+}
+section.containerAccess form{
+    background: rgba( 22, 22, 29, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba(40, 40, 41, 0.37);
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    padding: 3rem 1rem;
+}
+section.containerAccess form input{
+    width: 100%;
+    margin-bottom: 3%;
+}
+
+@media screen and (max-width: 890px){
+    header .col a.button.menu {
+        display: flex;
+    }
+    aside.panel{
+        width: 20%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 9999;
+    }
+    aside.panelEditor {
+        width: 50%;
+        z-index: 9999;
+    }
+    section.container{
+        max-width: 100%;
+        width: 100%;
+    }
+    
+}

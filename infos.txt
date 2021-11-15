@@ -1,0 +1,160 @@
+<?php
+
+    session_start();
+    date_default_timezone_set('America/Sao_Paulo');
+
+    $autoload = function($class){
+        include('classes/'.$class.'.php');
+    };
+
+    spl_autoload_register($autoload);
+
+    require __DIR__.'/vendor/autoload.php';
+    use Kreait\Firebase\Factory;
+    use Kreait\Firebase\ServiceAccount;
+
+    $factory = (new Factory())->withServiceAccount(__DIR__.'/classes/firebaseConfig.json')->withDatabaseUri('https://photoshop-aa1a2-default-rtdb.firebaseio.com/');
+
+    $database = $factory->createDatabase();
+?>
+
+
+<?php
+    //Foreach
+    $contatos = $database->getReference('contatos')->getSnapshot();
+    foreach($contatos->getValue() as $contato){
+        echo '<p>Nome'.$contato['nome'].'</p>';
+    }
+
+?>
+
+
+<?php
+    //inserir
+    if(isset($_POST['id'])){
+        $novoContato = [ 'id' => $_POST['id'], 'nome' => $_POST['nome'] ];
+        $database->getReference('contatos/' . $_POST['id'])->set($novoContato);
+    }
+
+?>
+
+<form method="post">
+    <input type="text" name="id" id="id" />
+    <input type="text" name="nome" id="nome" />
+    <input type="submit" name="enviar" id="enviar" />
+</form>
+
+
+<?php
+    //inserir com auth
+    if(isset($_POST['email'])){
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
+        $auth = $factory->createAuth();
+        $newUser = $auth->createUserWithEmailAndPassword($email, $senha);
+    }
+
+?>
+
+<form method="post">
+    <input type="text" name="email" id="email" />
+    <input type="password" name="senha" id="senha" />
+    <input type="submit" name="enviar" id="enviar" />
+</form>
+
+
+<?php
+    //validar a auth
+    if(isset($_POST['email'])){
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
+        try{
+            $userAuth = $factory->createAuth()->signInWithEmailAndPassword($email, $senha);
+            //criar seção e redirecionar pra home
+            $_SESSION['login'] = true;
+            //salvando
+            $userData = $userAuth->data();
+            $_SESSION['email'] = $userData['email'];
+            header('Location: home.php');
+        }catch(Exception $e){
+            echo 'campos errado';
+        }
+        
+    }
+
+?>
+
+<form method="post">
+    <input type="text" name="email" id="email" />
+    <input type="password" name="senha" id="senha" />
+    <input type="submit" name="enviar" id="enviar" />
+</form>
+
+
+<?php
+    //Logout
+    unset($_SESSION['login']);
+    unset($_SESSION['email']);
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//DRAG
+// function onDragStart(event){
+//     event.dataTransfer.setData('text/plain', event.target.id);
+
+//     el = event.srcElement.id;
+// }
+
+// function get(event){
+//     var el = event.target;
+//     var id = el.id;
+//     var dropzone = document.querySelector('.dropzone');
+//     var draggableElement = document.getElementById('insert_text');
+//     var elementClone = draggableElement.cloneNode(true);
+//     elementClone.classList.add(id,'specific-'+Math.floor(Math.random() * 999));
+
+//     el.addEventListener('dragend', (e) => {
+//     dropzone.appendChild(elementClone);
+
+//         if(id == 'text_build'){ 
+//             var clones_result = document.querySelectorAll('.insert_text');
+//             [].forEach.call(clones_result, function(clone){
+//             clone.innerHTML = '<div class="box" ondragend="use(event);" ondrop="onDrop(event);"><p class="editable" contenteditable="true"></p></div>';
+//         });
+//     }
+
+
+//     })
+// }
+
+// function use(event){
+//     document.querySelectorAll('.dropzone').forEach( function(move){
+//     move.addEventListener("dragend", function(event){
+//         el = event.target;
+//         dropzone = document.querySelector('.dropzone');
+//     });
+//     var children = dropzone.querySelector('.'+el.className.replaceAll(' ', '.'));
+//     console.log(children);
+//     return dropzone.appendChild(children);
+// });
+// }
+// function onDragOver(event) {
+//     event.preventDefault();
+// }
+// function onDrop(event) {
+//     event.dataTransfer.clearData();
+// }
