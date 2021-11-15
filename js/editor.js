@@ -350,7 +350,7 @@ document.getElementById('download').addEventListener('click', (e) => {
     formData.append('styles',styles);
 
     let xhr = new XMLHttpRequest();
-    xhr.open('POST','http://localhost/Projects/myPhotoshop/js/ajax.php',true);
+    xhr.open('POST','http://localhost/js/ajax.php',true);
 
     xhr.onreadystatechange = () => {
       if(xhr.readyState == 4){
