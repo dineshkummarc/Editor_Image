@@ -1,7 +1,7 @@
 <?php
     \controllers\accessController::controlAccess();
     if(isset($_POST['login'])){
-        \models\accessModel::signIn($_POST['email'],$_POST['password']);
+        \controllers\accessController::signIn($_POST['email'],$_POST['password']);
     }
 ?>
 

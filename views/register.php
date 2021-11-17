@@ -1,7 +1,7 @@
 <?php
     \controllers\accessController::controlAccess();
     if(isset($_POST['register'])){
-        \models\accessModel::signUp(uniqid($_POST['id']),$_POST['name'],$_POST['password'],$_POST['email']);
+        \controllers\accessController::signUp(uniqid($_POST['id']),$_POST['name'],$_POST['password'],$_POST['email']);
     }
 ?>
 
