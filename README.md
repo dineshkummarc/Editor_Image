@@ -17,7 +17,8 @@
   
 </ul>
 
-![Editor](https://user-images.githubusercontent.com/82960240/141708097-fa6dc252-8870-460f-87e2-7e02db503611.gif)
+
+https://user-images.githubusercontent.com/82960240/145725798-ca530c9f-26f4-40a6-8510-ea1e66f69934.mp4
 
 <hr />
 <h3>Autor</h3>
