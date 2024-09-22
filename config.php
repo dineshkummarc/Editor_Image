@@ -9,7 +9,7 @@
 
     spl_autoload_register($autoload);
     
-    define('BASE','http://localhost/Projects/');
+    define('BASE','http://localhost/image-editor-php/');
     define('BASE_UPLOADS', __DIR__.'/uploads/');
 
     if(!isset($_SESSION['login'])){
